@@ -1,0 +1,57 @@
+Enhance my homepage for "COSMIC Pizza & Donair - Canada's Best Halal Pizza & Donair" by adding elegant animation effects to each section.
+The design should stay clean and professional, using the content below and highlighting animation in these ways:
+
+Each main section (headers, descriptions, features, specials, menu, locations) should appear with a subtle entrance animation as the user scrolls—such as sliding in from left/right, fading in, or scaling up.
+
+Apply soft hover effects on all buttons, cards, and important content panels to make them visually responsive (e.g., slight scaling, shadow lift, gentle color change).
+
+Keep animations smooth and performance-friendly—avoid loud, jittery, or distracting effects.
+
+Use modern CSS (and JavaScript, if needed) for all animation logic; add comments explaining each effect added.
+
+Ensure all content is clearly readable, arranged with good hierarchy, nice spacing, and welcoming colors.
+
+The site remains responsive and mobile-friendly.
+
+Sample animation ideas:
+
+Section headings fade in and slide up one after another.
+
+Text blocks slide in from alternating sides.
+
+Button hover: slight scale-up and glowing shadow.
+
+Card/menu hover: gentle background lift or color highlight.
+
+Content to animate:
+
+"COSMIC Pizza & Donair - Canada's Best Halal Pizza & Donair"
+
+"We make the best Pizzas & Donair"
+
+"Where Quality Meets the Customer Service – 100% Halal"
+
+"Order Cosmic Pizza & Donair"
+
+"Combos – Pickup Special Pizzas Starting from $11.99 only"
+
+"Extras – Compliment your main dish!"
+
+"Locations – Find your Favorite Store close by"
+
+"Fresh from Pizza Menu – 100% Halal. Our Specialty Pizzas are the most selling."
+
+"Build-Your-Own Halal Pizza – Any number of toppings, crusts, and sauces. Enjoy half and half."
+
+"Say bye bye to soggy and oily pizzas."
+
+"Weddings, Corporate Gatherings, Special Occasions"
+
+Return a complete HTML file, with embedded CSS/JavaScript for sections and hover animation effects.
+Use comments for:
+
+// Entrance animation logic
+
+// Hover animation logic
+
+// Section organization

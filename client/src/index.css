@@ -294,6 +294,7 @@
     inset: -1px;
   }
 
+  /* Entrance animation keyframes */
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -314,6 +315,39 @@
     }
   }
 
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   @keyframes spin-slow {
     from {
       transform: rotate(0deg);
@@ -323,6 +357,7 @@
     }
   }
 
+  /* Animation classes */
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
   }
@@ -331,15 +366,75 @@
     animation: fade-in-up 0.6s ease-out forwards;
   }
 
+  .animate-slide-in-left {
+    animation: slide-in-left 0.7s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.7s ease-out forwards;
+  }
+
+  .animate-scale-up {
+    animation: scale-up 0.6s ease-out forwards;
+  }
+
   .animate-spin-slow {
     animation: spin-slow 20s linear infinite;
+  }
+
+  /* Initial hidden state for scroll animations */
+  .scroll-animate {
+    opacity: 0;
+  }
+
+  .scroll-animate.animate-visible {
+    animation-play-state: running;
+  }
+
+  /* Hover animation logic - Enhanced button and card hover effects */
+  .btn-hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-hover-lift:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px -5px rgba(255, 107, 53, 0.3), 0 8px 10px -6px rgba(255, 107, 53, 0.2);
+  }
+
+  .btn-hover-lift:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .card-hover-lift {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+  }
+
+  .image-hover-zoom {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-hover-zoom:hover {
+    transform: scale(1.08);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in,
     .animate-fade-in-up,
-    .animate-spin-slow {
-      animation: none;
+    .animate-slide-in-left,
+    .animate-slide-in-right,
+    .animate-scale-up,
+    .animate-spin-slow,
+    .btn-hover-lift,
+    .card-hover-lift,
+    .image-hover-zoom {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
     }
   }
 }

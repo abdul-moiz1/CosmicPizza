@@ -50,7 +50,7 @@ export default function HeroSection() {
             <Button 
               variant="default" 
               size="lg" 
-              className="text-lg px-8 py-6 h-auto"
+              className="text-lg px-8 py-6 h-auto btn-hover-lift"
               onClick={() => console.log('Order Now clicked')}
               data-testid="button-order-hero"
             >
@@ -59,7 +59,7 @@ export default function HeroSection() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="text-lg px-8 py-6 h-auto"
+              className="text-lg px-8 py-6 h-auto btn-hover-lift"
               onClick={() => {
                 const menu = document.getElementById('menu');
                 menu?.scrollIntoView({ behavior: 'smooth' });

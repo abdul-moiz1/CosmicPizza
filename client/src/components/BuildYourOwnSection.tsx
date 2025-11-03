@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import ingredientsImage from '@assets/generated_images/Fresh_pizza_ingredients_display_b1a8f202.png';
 
 const features = [
@@ -14,11 +15,17 @@ const features = [
 ];
 
 export default function BuildYourOwnSection() {
+  const { elementRef: textRef, isVisible: textVisible } = useScrollAnimation();
+  const { elementRef: imageRef, isVisible: imageVisible } = useScrollAnimation();
+
   return (
     <section id="build-your-own" className="py-16 md:py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1">
+          <div 
+            ref={textRef}
+            className={`order-2 lg:order-1 scroll-animate ${textVisible ? 'animate-slide-in-left' : ''}`}
+          >
             <Badge variant="secondary" className="mb-4">
               Customize
             </Badge>
@@ -53,7 +60,7 @@ export default function BuildYourOwnSection() {
 
             <Button 
               size="lg" 
-              className="text-lg px-8 py-6 h-auto"
+              className="text-lg px-8 py-6 h-auto btn-hover-lift"
               onClick={() => console.log('Start Building clicked')}
               data-testid="button-start-building"
             >
@@ -61,8 +68,11 @@ export default function BuildYourOwnSection() {
             </Button>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
+          <div 
+            ref={imageRef}
+            className={`order-1 lg:order-2 scroll-animate ${imageVisible ? 'animate-slide-in-right' : ''}`}
+          >
+            <div className="rounded-2xl overflow-hidden shadow-2xl card-hover-lift">
               <img 
                 src={ingredientsImage} 
                 alt="Fresh Pizza Ingredients"

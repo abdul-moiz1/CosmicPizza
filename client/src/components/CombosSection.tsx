@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import comboImage from '@assets/generated_images/Pizza_combo_meal_photo_2b68e7ef.png';
 
 const combos = [
@@ -24,11 +25,55 @@ const combos = [
   },
 ];
 
+function ComboCard({ combo, index }: { combo: typeof combos[0], index: number }) {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
+  return (
+    <Card 
+      ref={elementRef}
+      className={`overflow-hidden card-hover-lift scroll-animate ${isVisible ? 'animate-scale-up' : ''}`}
+      style={{ animationDelay: `${index * 0.15}s` }}
+      data-testid={`card-combo-${index}`}
+    >
+      <div className="aspect-[4/3] overflow-hidden bg-muted">
+        <img 
+          src={combo.image} 
+          alt={combo.title}
+          className="w-full h-full object-cover image-hover-zoom"
+        />
+      </div>
+      <CardHeader>
+        <CardTitle className="text-2xl transition-colors duration-300">{combo.title}</CardTitle>
+        <CardDescription className="text-base">
+          {combo.description}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-3xl font-bold text-primary">{combo.price}</p>
+      </CardContent>
+      <CardFooter>
+        <Button 
+          className="w-full btn-hover-lift" 
+          onClick={() => console.log(`Order ${combo.title}`)}
+          data-testid={`button-order-combo-${index}`}
+        >
+          Order Now
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
 export default function CombosSection() {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+
   return (
     <section id="combos" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 scroll-animate ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <Badge variant="secondary" className="mb-4">
             Special Offers
           </Badge>
@@ -42,38 +87,7 @@ export default function CombosSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {combos.map((combo, index) => (
-            <Card 
-              key={index}
-              className="overflow-hidden hover-elevate transition-all duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-              data-testid={`card-combo-${index}`}
-            >
-              <div className="aspect-[4/3] overflow-hidden bg-muted">
-                <img 
-                  src={combo.image} 
-                  alt={combo.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="text-2xl">{combo.title}</CardTitle>
-                <CardDescription className="text-base">
-                  {combo.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-bold text-primary">{combo.price}</p>
-              </CardContent>
-              <CardFooter>
-                <Button 
-                  className="w-full" 
-                  onClick={() => console.log(`Order ${combo.title}`)}
-                  data-testid={`button-order-combo-${index}`}
-                >
-                  Order Now
-                </Button>
-              </CardFooter>
-            </Card>
+            <ComboCard key={index} combo={combo} index={index} />
           ))}
         </div>
       </div>

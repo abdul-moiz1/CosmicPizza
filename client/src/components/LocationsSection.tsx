@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const locations = [
   {
@@ -30,11 +31,61 @@ const locations = [
   },
 ];
 
+function LocationCard({ location, index }: { location: typeof locations[0], index: number }) {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
+  return (
+    <Card 
+      ref={elementRef}
+      className={`card-hover-lift scroll-animate ${isVisible ? 'animate-fade-in-up' : ''}`}
+      style={{ animationDelay: `${index * 0.15}s` }}
+      data-testid={`card-location-${index}`}
+    >
+      <CardHeader>
+        <CardTitle className="text-2xl">{location.name}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex items-start gap-3">
+          <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+          <CardDescription className="text-base">
+            {location.address}
+          </CardDescription>
+        </div>
+        <div className="flex items-center gap-3">
+          <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+          <CardDescription className="text-base">
+            {location.phone}
+          </CardDescription>
+        </div>
+        <div className="flex items-center gap-3">
+          <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+          <CardDescription className="text-base">
+            {location.hours}
+          </CardDescription>
+        </div>
+        <Button 
+          variant="outline" 
+          className="w-full mt-4 btn-hover-lift"
+          onClick={() => console.log(`Get directions to ${location.name}`)}
+          data-testid={`button-directions-${index}`}
+        >
+          Get Directions
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function LocationsSection() {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+
   return (
     <section id="locations" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-12">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-12 scroll-animate ${headerVisible ? 'animate-fade-in-up' : ''}`}
+        >
           <Badge variant="secondary" className="mb-4">
             Visit Us
           </Badge>
@@ -48,44 +99,7 @@ export default function LocationsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {locations.map((location, index) => (
-            <Card 
-              key={index}
-              className="hover-elevate transition-all duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-              data-testid={`card-location-${index}`}
-            >
-              <CardHeader>
-                <CardTitle className="text-2xl">{location.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                  <CardDescription className="text-base">
-                    {location.address}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                  <CardDescription className="text-base">
-                    {location.phone}
-                  </CardDescription>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                  <CardDescription className="text-base">
-                    {location.hours}
-                  </CardDescription>
-                </div>
-                <Button 
-                  variant="outline" 
-                  className="w-full mt-4"
-                  onClick={() => console.log(`Get directions to ${location.name}`)}
-                  data-testid={`button-directions-${index}`}
-                >
-                  Get Directions
-                </Button>
-              </CardContent>
-            </Card>
+            <LocationCard key={index} location={location} index={index} />
           ))}
         </div>
       </div>
