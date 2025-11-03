@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Award } from 'lucide-react';
-import pizzaImage from '@assets/generated_images/Isolated_round_pizza_cutout_dce99862.png';
+import pizzaImage from '@assets/stock_images/round_supreme_pizza__94b7d1b8.jpg';
 
 export default function HeroSection() {
   return (
