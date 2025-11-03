@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'wouter';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,8 @@ export default function Navigation() {
     }
   };
 
+  const isHomePage = location === '/';
+
   return (
     <>
       <nav 
@@ -38,34 +42,40 @@ export default function Navigation() {
             </div>
 
             <div className="hidden md:flex items-center gap-8">
-              <button 
-                onClick={() => scrollToSection('combos')}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-combos"
-              >
-                Combos
-              </button>
-              <button 
-                onClick={() => scrollToSection('build-your-own')}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-build"
-              >
-                Build Your Own
-              </button>
-              <button 
-                onClick={() => scrollToSection('menu')}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-menu"
-              >
-                Menu
-              </button>
-              <button 
-                onClick={() => scrollToSection('locations')}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-                data-testid="link-locations"
-              >
-                Locations
-              </button>
+              {isHomePage ? (
+                <>
+                  <button 
+                    onClick={() => scrollToSection('combos')}
+                    className="text-foreground hover:text-primary transition-colors font-medium"
+                    data-testid="link-combos"
+                  >
+                    Combos
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('build-your-own')}
+                    className="text-foreground hover:text-primary transition-colors font-medium"
+                    data-testid="link-build"
+                  >
+                    Build Your Own
+                  </button>
+                </>
+              ) : (
+                <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-home">
+                  Home
+                </Link>
+              )}
+              <Link href="/menu" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-menu">
+                Full Menu
+              </Link>
+              {isHomePage && (
+                <button 
+                  onClick={() => scrollToSection('locations')}
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  data-testid="link-locations"
+                >
+                  Locations
+                </button>
+              )}
               <Button 
                 variant="default" 
                 size="default"
@@ -91,34 +101,51 @@ export default function Navigation() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-30 bg-background md:hidden pt-20">
           <div className="flex flex-col gap-4 p-8">
-            <button
-              onClick={() => scrollToSection('combos')}
-              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
-              data-testid="link-combos-mobile"
-            >
-              Combos
-            </button>
-            <button
-              onClick={() => scrollToSection('build-your-own')}
-              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
-              data-testid="link-build-mobile"
-            >
-              Build Your Own
-            </button>
-            <button
-              onClick={() => scrollToSection('menu')}
-              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
+            {!isHomePage && (
+              <Link 
+                href="/" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left" 
+                data-testid="link-home-mobile"
+              >
+                Home
+              </Link>
+            )}
+            {isHomePage && (
+              <>
+                <button
+                  onClick={() => scrollToSection('combos')}
+                  className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
+                  data-testid="link-combos-mobile"
+                >
+                  Combos
+                </button>
+                <button
+                  onClick={() => scrollToSection('build-your-own')}
+                  className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
+                  data-testid="link-build-mobile"
+                >
+                  Build Your Own
+                </button>
+              </>
+            )}
+            <Link 
+              href="/menu" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left" 
               data-testid="link-menu-mobile"
             >
-              Menu
-            </button>
-            <button
-              onClick={() => scrollToSection('locations')}
-              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
-              data-testid="link-locations-mobile"
-            >
-              Locations
-            </button>
+              Full Menu
+            </Link>
+            {isHomePage && (
+              <button
+                onClick={() => scrollToSection('locations')}
+                className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
+                data-testid="link-locations-mobile"
+              >
+                Locations
+              </button>
+            )}
             <Button 
               variant="default" 
               size="lg" 
