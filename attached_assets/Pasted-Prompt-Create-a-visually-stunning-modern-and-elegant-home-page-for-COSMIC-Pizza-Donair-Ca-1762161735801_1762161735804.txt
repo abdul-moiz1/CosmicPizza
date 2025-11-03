@@ -1,0 +1,65 @@
+Prompt:
+
+Create a visually stunning, modern, and elegant home page for "COSMIC Pizza & Donair - Canada's Best Halal Pizza & Donair". Use only the provided content below in a new design (do not copy the current website's style).
+
+At the top of the page, add a high-quality pizza graphic or illustration that rotates continuously (using CSS or JavaScript animation).
+
+Add the following interactive pizza movement:
+
+When the user scrolls down, the pizza also animates—moving smoothly (for example, sliding horizontally, or following a scrolling path) toward the end of the home page.
+
+The pizza animator should attract attention softly, not distract the user.
+
+Make sure this animation is smooth, performance-friendly, and visually appealing on both desktop and mobile.
+
+Include additional elegant animation effects throughout the homepage (such as fade-ins, subtle movement, soft hover states for buttons and cards).
+
+The design should be clean, professional, softly eye-catching, with excellent visual hierarchy, welcoming colors, elegant typography, and clear layout (not cluttered).
+
+Use all the content provided below and organize it for readability (Halal pizza description, combos, build-your-own pizza, specials, extras, locations, menu highlights, ordering info, catering for occasions).
+
+The site must be responsive, mobile-friendly, and coded in a single HTML file (HTML, CSS, JavaScript).
+
+Do not add boilerplate, just the ready-to-run homepage.
+
+Use comments with:
+
+// Pizza animator and movement logic
+
+// Animation effects
+
+// Content sections
+
+Special instructions for animator:
+
+The pizza animator should start by rotating at the top.
+
+As the user scrolls, the pizza smoothly moves (for example, slides down, or follows a curve) until it reaches the bottom/end of the home page.
+
+If possible, provide code for both continuous rotation and scroll-based movement (explained in comments).
+
+Content to include:
+
+"COSMIC Pizza & Donair - Canada's Best Halal Pizza & Donair"
+
+"We make the best Pizzas & Donair"
+
+"Where Quality Meets the Customer Service – 100% Halal"
+
+"Order Cosmic Pizza & Donair"
+
+"Combos – Pickup Special Pizzas Starting from $11.99 only"
+
+"Extras – Compliment your main dish!"
+
+"Locations – Find your Favorite Store close by"
+
+"Fresh from Pizza Menu – 100% Halal. Our Specialty Pizzas are the most selling."
+
+"Build-Your-Own Halal Pizza – Any number of toppings, crusts, and sauces. Enjoy half and half."
+
+"Say bye bye to soggy and oily pizzas."
+
+"Weddings, Corporate Gatherings, Special Occasions"
+
+Prepare a full HTML file with comments explaining the pizza animation logic, movement effects, and where main content is placed.
