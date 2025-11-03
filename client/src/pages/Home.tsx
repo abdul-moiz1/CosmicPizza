@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation';
-import AnimatedPizza from '@/components/AnimatedPizza';
 import HeroSection from '@/components/HeroSection';
 import TrustBar from '@/components/TrustBar';
 import CombosSection from '@/components/CombosSection';
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <AnimatedPizza />
       <HeroSection />
       <TrustBar />
       <CombosSection />
