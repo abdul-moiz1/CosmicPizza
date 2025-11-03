@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import pizzaImage from '@assets/generated_images/Appetizing_whole_pizza_illustration_05787be9.png';
+import pizzaImage from '@assets/image_1762163062581.png';
 
 export default function AnimatedPizza() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -19,28 +19,29 @@ export default function AnimatedPizza() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const rotation = scrollProgress * 720;
-  const translateX = scrollProgress * 300;
-  const translateY = scrollProgress * 100;
+  const rotation = scrollProgress * 1080;
+  const maxScroll = typeof window !== 'undefined' ? (document.documentElement.scrollHeight - window.innerHeight) : 1000;
+  const translateY = scrollProgress * maxScroll * 0.85;
+  
+  const initialTop = 'calc(50vh + 120px)';
 
   return (
     <div 
-      className="fixed top-20 right-4 md:right-12 pointer-events-none z-50 will-change-transform"
+      className="fixed left-1/2 pointer-events-none z-30 will-change-transform"
       style={{
-        transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotation}deg)`,
-        transition: 'transform 0.1s ease-out',
+        top: initialTop,
+        transform: `translateX(-50%) translateY(${translateY}px) rotate(${rotation}deg)`,
+        transition: 'transform 0.05s ease-out',
       }}
     >
-      <div className="relative w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64">
-        <img 
-          src={pizzaImage} 
-          alt="Pizza" 
-          className="w-full h-full object-contain drop-shadow-2xl animate-spin-slow"
-          style={{
-            animation: 'spin 20s linear infinite',
-          }}
-        />
-      </div>
+      <img 
+        src={pizzaImage} 
+        alt="Pizza" 
+        className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-2xl"
+        style={{
+          filter: 'drop-shadow(0 10px 30px rgba(255, 107, 53, 0.3))',
+        }}
+      />
     </div>
   );
 }
