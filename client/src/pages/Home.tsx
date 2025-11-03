@@ -7,7 +7,6 @@ import BuildYourOwnSection from '@/components/BuildYourOwnSection';
 import MenuSection from '@/components/MenuSection';
 import ExtrasSection from '@/components/ExtrasSection';
 import LocationsSection from '@/components/LocationsSection';
-import CateringSection from '@/components/CateringSection';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       <MenuSection />
       <ExtrasSection />
       <LocationsSection />
-      <CateringSection />
       <Footer />
     </div>
   );

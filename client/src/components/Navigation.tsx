@@ -43,27 +43,21 @@ export default function Navigation() {
 
             <div className="hidden md:flex items-center gap-8">
               {isHomePage ? (
-                <>
-                  <button 
-                    onClick={() => scrollToSection('combos')}
-                    className="text-foreground hover:text-primary transition-colors font-medium"
-                    data-testid="link-combos"
-                  >
-                    Combos
-                  </button>
-                  <button 
-                    onClick={() => scrollToSection('build-your-own')}
-                    className="text-foreground hover:text-primary transition-colors font-medium"
-                    data-testid="link-build"
-                  >
-                    Build Your Own
-                  </button>
-                </>
+                <button 
+                  onClick={() => scrollToSection('combos')}
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  data-testid="link-combos"
+                >
+                  Combos
+                </button>
               ) : (
                 <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-home">
                   Home
                 </Link>
               )}
+              <Link href="/build-your-own" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-build">
+                Build Your Own
+              </Link>
               <Link href="/menu" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-menu">
                 Full Menu
               </Link>
@@ -112,23 +106,22 @@ export default function Navigation() {
               </Link>
             )}
             {isHomePage && (
-              <>
-                <button
-                  onClick={() => scrollToSection('combos')}
-                  className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
-                  data-testid="link-combos-mobile"
-                >
-                  Combos
-                </button>
-                <button
-                  onClick={() => scrollToSection('build-your-own')}
-                  className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
-                  data-testid="link-build-mobile"
-                >
-                  Build Your Own
-                </button>
-              </>
+              <button
+                onClick={() => scrollToSection('combos')}
+                className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left"
+                data-testid="link-combos-mobile"
+              >
+                Combos
+              </button>
             )}
+            <Link 
+              href="/build-your-own" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-xl font-medium text-foreground hover:text-primary transition-colors text-left" 
+              data-testid="link-build-mobile"
+            >
+              Build Your Own
+            </Link>
             <Link 
               href="/menu" 
               onClick={() => setIsMobileMenuOpen(false)}

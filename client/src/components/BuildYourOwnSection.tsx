@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { Link } from 'wouter';
 import ingredientsImage from '@assets/generated_images/Fresh_pizza_ingredients_display_b1a8f202.png';
 
 const features = [
@@ -58,14 +59,15 @@ export default function BuildYourOwnSection() {
               Say bye bye to soggy and oily pizzas.
             </p>
 
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 h-auto btn-hover-lift"
-              onClick={() => console.log('Start Building clicked')}
-              data-testid="button-start-building"
-            >
-              Start Building Your Pizza
-            </Button>
+            <Link href="/build-your-own">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 h-auto btn-hover-lift"
+                data-testid="button-start-building"
+              >
+                Start Building Your Pizza
+              </Button>
+            </Link>
           </div>
 
           <div 
