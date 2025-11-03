@@ -16,7 +16,7 @@ export default function MenuSection() {
   return (
     <section id="menu" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4">
             Our Menu
           </Badge>
@@ -32,26 +32,40 @@ export default function MenuSection() {
           {menuItems.map((item, index) => (
             <Card 
               key={index}
-              className="hover-elevate transition-all duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.05}s` }}
+              className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 animate-fade-in-up bg-gradient-to-br from-card to-card/80"
+              style={{ animationDelay: `${index * 0.1}s` }}
               data-testid={`card-menu-${index}`}
             >
-              <div className="aspect-square overflow-hidden bg-muted">
+              <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/10">
+                <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                 <img 
                   src={pizzaImage} 
                   alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-3"
                 />
+                <div className="absolute top-4 right-4 z-20">
+                  <Badge variant="default" className="bg-primary/90 backdrop-blur-sm">
+                    Popular
+                  </Badge>
+                </div>
               </div>
-              <CardHeader>
-                <CardTitle className="text-xl">{item.name}</CardTitle>
-                <CardDescription>{item.description}</CardDescription>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
+                  {item.name}
+                </CardTitle>
+                <CardDescription className="text-base mt-2">
+                  {item.description}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between">
-                  <p className="text-2xl font-bold text-primary">{item.price}</p>
+              <CardContent className="pt-0">
+                <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-1">Starting from</p>
+                    <p className="text-3xl font-bold text-primary">{item.price}</p>
+                  </div>
                   <Button 
-                    size="sm"
+                    size="default"
+                    className="group-hover:scale-105 transition-transform duration-300"
                     onClick={() => console.log(`Add ${item.name} to cart`)}
                     data-testid={`button-add-menu-${index}`}
                   >
