@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Award } from "lucide-react";
-import pizzaImage from "@assets/stock_images/pepperoni_pizza_whol_13e52a81.jpg";
+import pizzaImage from "@assets/stock_images/pepperoni_pizza_whol_c6fcd89f.jpg";
 
 export default function HeroSection() {
   return (
