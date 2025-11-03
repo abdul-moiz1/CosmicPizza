@@ -69,6 +69,7 @@ export default function Navigation() {
               <Button 
                 variant="default" 
                 size="default"
+                className="btn-hover-lift"
                 onClick={() => console.log('Order Now clicked')}
                 data-testid="button-order-nav"
               >
