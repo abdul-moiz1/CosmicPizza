@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,107,53,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,107,53,0.05),transparent_50%)]" />
       
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10">
+      <div className="absolute top-1/2 left-[60%] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10">
         <img 
           src={pizzaImage} 
           alt="Pizza" 
