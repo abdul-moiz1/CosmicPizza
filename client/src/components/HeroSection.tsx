@@ -20,7 +20,7 @@ export default function HeroSection() {
         <img 
           src={pizzaImage} 
           alt="Pizza" 
-          className="w-[450px] h-[450px] md:w-[600px] md:h-[600px] lg:w-[800px] lg:h-[800px] object-contain animate-spin-slow"
+          className="w-[550px] h-[550px] md:w-[750px] md:h-[750px] lg:w-[950px] lg:h-[950px] object-contain animate-spin-slow"
         />
       </div>
       
