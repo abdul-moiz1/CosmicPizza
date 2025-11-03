@@ -16,11 +16,11 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-primary/5 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
       
-      <div className="absolute top-1/2 left-[60%] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10">
+      <div className="absolute top-1/2 left-[68%] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10">
         <img 
           src={pizzaImage} 
           alt="Pizza" 
-          className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[700px] lg:h-[700px] object-contain animate-spin-slow"
+          className="w-[450px] h-[450px] md:w-[600px] md:h-[600px] lg:w-[800px] lg:h-[800px] object-contain animate-spin-slow"
         />
       </div>
       
