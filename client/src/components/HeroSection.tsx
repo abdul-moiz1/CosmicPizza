@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Award } from 'lucide-react';
-import pizzaImage from '@assets/generated_images/Pizza_on_white_background_546bbda7.png';
+import pizzaImage from '@assets/stock_images/pepperoni_pizza_whol_13e52a81.jpg';
 
 export default function HeroSection() {
   return (
@@ -16,7 +16,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-primary/5 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
       
-      <div className="absolute top-[42%] right-[5%] md:right-[10%] lg:right-[5%] -translate-y-1/2 pointer-events-none opacity-80 animate-fade-in">
+      <div className="absolute top-[42%] right-[5%] md:right-[10%] lg:right-[5%] -translate-y-1/2 pointer-events-none animate-fade-in">
         <img 
           src={pizzaImage} 
           alt="Pizza" 
