@@ -422,6 +422,163 @@
     transform: scale(1.08);
   }
 
+  /* Gradient Hover Effects */
+  .gradient-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gradient-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+    transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .gradient-hover:hover::before {
+    left: 100%;
+  }
+
+  .gradient-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(255, 107, 53, 0.2);
+  }
+
+  /* Gradient Border Hover */
+  .gradient-border-hover {
+    position: relative;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(90deg, #ff6b35, #f7931e, #ff6b35) border-box;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+  }
+
+  .gradient-border-hover:hover {
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    transform: scale(1.02);
+  }
+
+  /* Animated Gradient Background */
+  .animated-gradient-bg {
+    background: linear-gradient(-45deg, #fff5f0, #ffffff, #fff8f3, #ffffff);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Hover Glow Effect */
+  .hover-glow {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.4),
+                0 0 60px rgba(255, 107, 53, 0.2),
+                0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer-slide 3s infinite;
+  }
+
+  @keyframes shimmer-slide {
+    0% { left: -150%; }
+    100% { left: 150%; }
+  }
+
+  /* Floating Animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(255, 107, 53, 0.6),
+                  0 0 60px rgba(255, 107, 53, 0.3);
+    }
+  }
+
+  /* Card Gradient Overlay */
+  .card-gradient-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-gradient-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0) 0%, rgba(255, 107, 53, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .card-gradient-overlay:hover::before {
+    opacity: 1;
+  }
+
+  /* Tilt Effect on Hover */
+  .hover-tilt {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.02);
+  }
+
+  /* Combined Zoom and Tilt Effect */
+  .image-hover-zoom.hover-tilt:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) scale(1.08);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in,
     .animate-fade-in-up,
@@ -431,7 +588,13 @@
     .animate-spin-slow,
     .btn-hover-lift,
     .card-hover-lift,
-    .image-hover-zoom {
+    .image-hover-zoom,
+    .gradient-hover,
+    .hover-glow,
+    .shimmer,
+    .float-animation,
+    .pulse-glow,
+    .hover-tilt {
       animation: none !important;
       transition: none !important;
       transform: none !important;

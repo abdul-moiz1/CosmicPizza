@@ -62,7 +62,7 @@ export default function BuildYourOwnSection() {
             <Link href="/build-your-own">
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-6 h-auto btn-hover-lift"
+                className="text-lg px-8 py-6 h-auto btn-hover-lift hover-glow"
                 data-testid="button-start-building"
               >
                 Start Building Your Pizza
@@ -74,11 +74,11 @@ export default function BuildYourOwnSection() {
             ref={imageRef}
             className={`order-1 lg:order-2 scroll-animate ${imageVisible ? 'animate-slide-in-right' : ''}`}
           >
-            <div className="rounded-2xl overflow-hidden shadow-2xl card-hover-lift">
+            <div className="rounded-2xl overflow-hidden shadow-2xl card-hover-lift hover-glow shimmer">
               <img 
                 src={ingredientsImage} 
                 alt="Fresh Pizza Ingredients"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover image-hover-zoom"
               />
             </div>
           </div>

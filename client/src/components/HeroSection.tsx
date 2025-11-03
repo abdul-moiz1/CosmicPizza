@@ -16,11 +16,11 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-primary/5 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
 
-      <div className="absolute top-[42%] right-[5%] md:right-[10%] lg:right-[5%] -translate-y-1/2 pointer-events-none animate-fade-in">
+      <div className="absolute top-[42%] right-[5%] md:right-[10%] lg:right-[5%] -translate-y-1/2 pointer-events-none animate-fade-in float-animation">
         <img
           src={pizzaImage}
           alt="Pizza"
-          className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] object-contain animate-spin-slow"
+          className="w-[300px] h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] object-contain animate-spin-slow pulse-glow"
           style={{ filter: "drop-shadow(0 20px 60px rgba(255, 107, 53, 0.3))" }}
         />
       </div>
@@ -30,7 +30,7 @@ export default function HeroSection() {
           <div className="flex mb-8 animate-fade-in">
             <Badge
               variant="secondary"
-              className="px-6 py-3 text-sm md:text-base gap-2 shadow-lg"
+              className="px-6 py-3 text-sm md:text-base gap-2 shadow-lg shimmer hover-glow"
             >
               <Award className="w-5 h-5" />
               100% Halal Certified
@@ -64,7 +64,7 @@ export default function HeroSection() {
             <Button
               variant="default"
               size="lg"
-              className="text-base md:text-lg px-10 py-7 h-auto btn-hover-lift shadow-xl"
+              className="text-base md:text-lg px-10 py-7 h-auto btn-hover-lift shadow-xl hover-glow"
               onClick={() => console.log("Order Now clicked")}
               data-testid="button-order-hero"
             >
@@ -73,7 +73,7 @@ export default function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="text-base md:text-lg px-10 py-7 h-auto btn-hover-lift"
+              className="text-base md:text-lg px-10 py-7 h-auto btn-hover-lift gradient-border-hover"
               onClick={() => {
                 const menu = document.getElementById("menu");
                 menu?.scrollIntoView({ behavior: "smooth" });

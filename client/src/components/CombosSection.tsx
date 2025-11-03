@@ -31,11 +31,11 @@ function ComboCard({ combo, index }: { combo: typeof combos[0], index: number })
   return (
     <Card 
       ref={elementRef}
-      className={`overflow-hidden card-hover-lift scroll-animate ${isVisible ? 'animate-scale-up' : ''}`}
+      className={`overflow-hidden card-hover-lift gradient-hover card-gradient-overlay scroll-animate ${isVisible ? 'animate-scale-up' : ''}`}
       style={{ animationDelay: `${index * 0.15}s` }}
       data-testid={`card-combo-${index}`}
     >
-      <div className="aspect-[4/3] overflow-hidden bg-muted">
+      <div className="aspect-[4/3] overflow-hidden bg-muted shimmer">
         <img 
           src={combo.image} 
           alt={combo.title}
@@ -53,7 +53,7 @@ function ComboCard({ combo, index }: { combo: typeof combos[0], index: number })
       </CardContent>
       <CardFooter>
         <Button 
-          className="w-full btn-hover-lift" 
+          className="w-full btn-hover-lift hover-glow" 
           onClick={() => console.log(`Order ${combo.title}`)}
           data-testid={`button-order-combo-${index}`}
         >

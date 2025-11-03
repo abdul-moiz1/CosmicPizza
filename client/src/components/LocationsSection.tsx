@@ -37,7 +37,7 @@ function LocationCard({ location, index }: { location: typeof locations[0], inde
   return (
     <Card 
       ref={elementRef}
-      className={`card-hover-lift scroll-animate ${isVisible ? 'animate-fade-in-up' : ''}`}
+      className={`card-hover-lift gradient-hover card-gradient-overlay hover-glow scroll-animate ${isVisible ? 'animate-fade-in-up' : ''}`}
       style={{ animationDelay: `${index * 0.15}s` }}
       data-testid={`card-location-${index}`}
     >
@@ -65,7 +65,7 @@ function LocationCard({ location, index }: { location: typeof locations[0], inde
         </div>
         <Button 
           variant="outline" 
-          className="w-full mt-4 btn-hover-lift"
+          className="w-full mt-4 btn-hover-lift gradient-border-hover"
           onClick={() => console.log(`Get directions to ${location.name}`)}
           data-testid={`button-directions-${index}`}
         >

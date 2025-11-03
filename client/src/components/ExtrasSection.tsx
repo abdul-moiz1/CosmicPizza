@@ -16,13 +16,13 @@ function ExtraCard({ extra, index }: { extra: typeof extras[0], index: number })
   return (
     <Card 
       ref={elementRef}
-      className={`text-center card-hover-lift bg-background scroll-animate ${isVisible ? 'animate-fade-in-up' : ''}`}
+      className={`text-center card-hover-lift gradient-hover card-gradient-overlay hover-glow bg-background scroll-animate ${isVisible ? 'animate-fade-in-up' : ''}`}
       style={{ animationDelay: `${index * 0.1}s` }}
       data-testid={`card-extra-${index}`}
     >
               <CardHeader>
                 <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center shimmer pulse-glow">
                     <extra.icon className="w-8 h-8 text-primary" />
                   </div>
                 </div>

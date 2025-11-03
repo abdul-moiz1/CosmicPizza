@@ -19,19 +19,19 @@ function MenuItem({ item, index }: { item: typeof menuItems[0], index: number })
   return (
     <Card 
       ref={elementRef}
-      className={`group overflow-hidden border-0 shadow-lg card-hover-lift bg-gradient-to-br from-card to-card/80 scroll-animate ${isVisible ? 'animate-scale-up' : ''}`}
+      className={`group overflow-hidden border-0 shadow-lg card-hover-lift hover-glow gradient-hover card-gradient-overlay bg-gradient-to-br from-card to-card/80 scroll-animate ${isVisible ? 'animate-scale-up' : ''}`}
       style={{ animationDelay: `${index * 0.1}s` }}
       data-testid={`card-menu-${index}`}
     >
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/10">
+      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-accent/10 shimmer">
         <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
         <img 
           src={pizzaImage} 
           alt={item.name}
-          className="w-full h-full object-cover image-hover-zoom"
+          className="w-full h-full object-cover image-hover-zoom hover-tilt"
         />
         <div className="absolute top-4 right-4 z-20">
-          <Badge variant="default" className="bg-primary/90 backdrop-blur-sm">
+          <Badge variant="default" className="bg-primary/90 backdrop-blur-sm pulse-glow">
             Popular
           </Badge>
         </div>
@@ -52,7 +52,7 @@ function MenuItem({ item, index }: { item: typeof menuItems[0], index: number })
           </div>
           <Button 
             size="default"
-            className="btn-hover-lift"
+            className="btn-hover-lift hover-glow"
             onClick={() => console.log(`Add ${item.name} to cart`)}
             data-testid={`button-add-menu-${index}`}
           >
