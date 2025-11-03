@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import pizzaImage from '@assets/image_1762163062581.png';
+import pizzaImage from '@assets/generated_images/3D_round_pizza_render_8830be4d.png';
 
 export default function AnimatedPizza() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -19,11 +19,11 @@ export default function AnimatedPizza() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const rotation = scrollProgress * 1080;
+  const rotation = scrollProgress * 1440;
   const maxScroll = typeof window !== 'undefined' ? (document.documentElement.scrollHeight - window.innerHeight) : 1000;
-  const translateY = scrollProgress * maxScroll * 0.85;
+  const translateY = scrollProgress * maxScroll * 0.9;
   
-  const initialTop = 'calc(50vh + 120px)';
+  const initialTop = 'calc(50vh - 80px)';
 
   return (
     <div 
@@ -37,9 +37,9 @@ export default function AnimatedPizza() {
       <img 
         src={pizzaImage} 
         alt="Pizza" 
-        className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-2xl"
+        className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
         style={{
-          filter: 'drop-shadow(0 10px 30px rgba(255, 107, 53, 0.3))',
+          filter: 'drop-shadow(0 15px 40px rgba(255, 107, 53, 0.4))',
         }}
       />
     </div>
