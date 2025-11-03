@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import TrustBar from '@/components/TrustBar';
+import PizzaTimeline from '@/components/PizzaTimeline';
 import CombosSection from '@/components/CombosSection';
 import BuildYourOwnSection from '@/components/BuildYourOwnSection';
 import MenuSection from '@/components/MenuSection';
@@ -15,6 +16,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <TrustBar />
+      <PizzaTimeline />
       <CombosSection />
       <BuildYourOwnSection />
       <MenuSection />
