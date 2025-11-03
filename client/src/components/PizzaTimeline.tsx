@@ -46,260 +46,122 @@ const timelineSteps = [
 ];
 
 export default function PizzaTimeline() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const stepId = parseInt(entry.target.getAttribute('data-step-id') || '0');
+          if (entry.isIntersecting) {
+            setVisibleSteps((prev) => {
+              if (!prev.includes(stepId)) {
+                return [...prev, stepId];
+              }
+              return prev;
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
 
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const scrollWidth = container.scrollWidth - container.clientWidth;
-      const progress = scrollWidth > 0 ? (scrollLeft / scrollWidth) * 100 : 0;
-      setScrollProgress(Math.min(Math.max(progress, 0), 100));
-    };
+    stepRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
 
-    container.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => container.removeEventListener('scroll', handleScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="pizza-timeline-section" data-testid="section-pizza-timeline">
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 timeline-title" data-testid="text-timeline-title">
+    <section className="bg-[#0B132B] text-white py-16 md:py-24 overflow-hidden" data-testid="section-pizza-timeline">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 
+            className="text-4xl md:text-5xl font-bold mb-4 text-white"
+            style={{ textShadow: '0 2px 10px rgba(255, 195, 0, 0.3)' }}
+            data-testid="text-timeline-title"
+          >
             Our Cosmic Pizza Journey
           </h2>
-          <p className="text-lg md:text-xl timeline-subtitle" data-testid="text-timeline-subtitle">
+          <p className="text-lg md:text-xl text-white/85" data-testid="text-timeline-subtitle">
             From dough to delivery — made fresh every step of the way.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="progress-bar-container" data-testid="container-progress-bar">
-            <div 
-              className="progress-bar-fill" 
-              style={{ width: `${scrollProgress}%` }}
-              data-testid="element-progress-fill"
-            />
-          </div>
-
+        <div className="relative max-w-5xl mx-auto">
           <div 
-            ref={scrollContainerRef}
-            className="timeline-scroll-container"
-            data-testid="container-timeline-scroll"
-          >
-            <div className="timeline-content">
-              {timelineSteps.map((step, index) => (
-                <div 
-                  key={step.id} 
-                  className="timeline-step"
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#FFC300] via-[#FFD700] to-[#FFC300] opacity-30 md:-translate-x-1/2"
+            data-testid="element-progress-fill"
+          />
+
+          <div className="space-y-12 md:space-y-16" data-testid="container-timeline-scroll">
+            {timelineSteps.map((step, index) => {
+              const isEven = index % 2 === 0;
+              const isVisible = visibleSteps.includes(step.id);
+              
+              return (
+                <div
+                  key={step.id}
+                  ref={(el) => (stepRefs.current[index] = el)}
+                  data-step-id={step.id}
+                  className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-12 ${
+                    isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
                   data-testid={`card-timeline-step-${step.id}`}
+                  style={{ 
+                    animationDelay: `${index * 150}ms`,
+                    animationFillMode: 'forwards'
+                  }}
                 >
-                  <div className="step-image-wrapper" data-testid={`container-step-image-${step.id}`}>
-                    <img 
-                      src={step.image} 
-                      alt={step.title}
-                      className="step-image"
-                      data-testid={`img-step-${step.id}`}
-                    />
+                  <div 
+                    className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left'} text-center`}
+                    data-testid={`container-step-content-${step.id}`}
+                  >
+                    <h3 
+                      className="text-2xl md:text-3xl font-bold text-[#FFC300] mb-3 animate-fade-in-left"
+                      style={{ animationDelay: `${index * 150 + 100}ms` }}
+                      data-testid={`text-step-title-${step.id}`}
+                    >
+                      {step.title}
+                    </h3>
+                    <p 
+                      className="text-base md:text-lg text-white/80 max-w-md mx-auto md:mx-0 animate-fade-in-left"
+                      style={{ animationDelay: `${index * 150 + 200}ms` }}
+                      data-testid={`text-step-description-${step.id}`}
+                    >
+                      {step.description}
+                    </p>
                   </div>
-                  <h3 className="step-title" data-testid={`text-step-title-${step.id}`}>
-                    {step.title}
-                  </h3>
-                  <p className="step-description" data-testid={`text-step-description-${step.id}`}>
-                    {step.description}
-                  </p>
-                  {index < timelineSteps.length - 1 && (
-                    <div className="step-connector" data-testid={`element-connector-${step.id}`} />
-                  )}
+
+                  <div 
+                    className="relative z-10 flex-shrink-0 group"
+                    data-testid={`container-step-image-${step.id}`}
+                  >
+                    <div className="absolute inset-0 bg-[#FFC300]/20 rounded-full blur-xl group-hover:bg-[#FFC300]/40 transition-all duration-500 animate-pulse" />
+                    <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-[#FFC300]/30 bg-white/5 transition-all duration-500 ease-in-out hover:scale-110 hover:border-[#FFC300] hover:shadow-[0_0_30px_rgba(255,195,0,0.5)] animate-scale-in"
+                      style={{ animationDelay: `${index * 150}ms` }}
+                    >
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-testid={`img-step-${step.id}`}
+                      />
+                    </div>
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#0B132B] px-4 py-1 rounded-full border-2 border-[#FFC300]/50">
+                      <span className="text-[#FFC300] font-bold text-sm">Step {step.id}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 hidden md:block" />
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
-
-      <style>{`
-        .pizza-timeline-section {
-          background-color: #0B132B;
-          color: white;
-          overflow: hidden;
-        }
-
-        .timeline-title {
-          color: white;
-          text-shadow: 0 2px 10px rgba(255, 195, 0, 0.3);
-        }
-
-        .timeline-subtitle {
-          color: rgba(255, 255, 255, 0.85);
-        }
-
-        .progress-bar-container {
-          width: 100%;
-          height: 4px;
-          background-color: rgba(255, 255, 255, 0.2);
-          border-radius: 2px;
-          margin-bottom: 3rem;
-          overflow: hidden;
-        }
-
-        .progress-bar-fill {
-          height: 100%;
-          background: linear-gradient(90deg, #FFC300 0%, #FFD700 100%);
-          border-radius: 2px;
-          transition: width 0.3s ease-out;
-          box-shadow: 0 0 10px rgba(255, 195, 0, 0.6);
-        }
-
-        .timeline-scroll-container {
-          overflow-x: auto;
-          overflow-y: hidden;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: thin;
-          scrollbar-color: #FFC300 rgba(255, 255, 255, 0.1);
-        }
-
-        .timeline-scroll-container::-webkit-scrollbar {
-          height: 8px;
-        }
-
-        .timeline-scroll-container::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 4px;
-        }
-
-        .timeline-scroll-container::-webkit-scrollbar-thumb {
-          background: #FFC300;
-          border-radius: 4px;
-        }
-
-        .timeline-scroll-container::-webkit-scrollbar-thumb:hover {
-          background: #FFD700;
-        }
-
-        .timeline-content {
-          display: flex;
-          gap: 2rem;
-          padding: 2rem 1rem;
-          min-width: min-content;
-        }
-
-        .timeline-step {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          min-width: 280px;
-          max-width: 280px;
-          flex-shrink: 0;
-        }
-
-        .step-image-wrapper {
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          overflow: hidden;
-          margin-bottom: 1.5rem;
-          border: 3px solid rgba(255, 195, 0, 0.3);
-          transition: all 0.4s ease-in-out;
-          background: rgba(255, 255, 255, 0.05);
-        }
-
-        .step-image-wrapper:hover {
-          transform: scale(1.1);
-          border-color: #FFC300;
-          box-shadow: 
-            0 0 20px rgba(255, 195, 0, 0.4),
-            0 0 40px rgba(255, 195, 0, 0.2);
-        }
-
-        .step-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: all 0.4s ease-in-out;
-        }
-
-        .step-image-wrapper:hover .step-image {
-          transform: scale(1.05);
-        }
-
-        .step-title {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: #FFC300;
-          margin-bottom: 0.75rem;
-          text-align: center;
-        }
-
-        .step-description {
-          font-size: 0.95rem;
-          color: rgba(255, 255, 255, 0.8);
-          text-align: center;
-          line-height: 1.5;
-          max-width: 260px;
-        }
-
-        .step-connector {
-          position: absolute;
-          top: 90px;
-          right: -2rem;
-          width: 2rem;
-          height: 2px;
-          background: linear-gradient(90deg, #FFC300 0%, rgba(255, 195, 0, 0.3) 100%);
-        }
-
-        @media (max-width: 768px) {
-          .timeline-content {
-            gap: 1.5rem;
-            padding: 1.5rem 0.5rem;
-          }
-
-          .timeline-step {
-            min-width: 240px;
-            max-width: 240px;
-          }
-
-          .step-image-wrapper {
-            width: 150px;
-            height: 150px;
-          }
-
-          .step-title {
-            font-size: 1.25rem;
-          }
-
-          .step-description {
-            font-size: 0.875rem;
-          }
-
-          .step-connector {
-            top: 75px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .timeline-step {
-            min-width: 200px;
-            max-width: 200px;
-          }
-
-          .step-image-wrapper {
-            width: 130px;
-            height: 130px;
-          }
-
-          .step-connector {
-            top: 65px;
-          }
-        }
-      `}</style>
     </section>
   );
 }
