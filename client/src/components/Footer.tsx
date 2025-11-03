@@ -1,10 +1,19 @@
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import pizzaImage from '@assets/generated_images/3D_round_pizza_render_8830be4d.png';
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-card-border py-12">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <footer className="relative bg-card border-t border-card-border py-12 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-10">
+        <img 
+          src={pizzaImage} 
+          alt="Pizza" 
+          className="w-96 h-96 md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain animate-spin-slow"
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
           <div>
             <h3 className="text-2xl font-bold text-primary mb-4">COSMIC</h3>

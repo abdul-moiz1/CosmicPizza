@@ -1,29 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Award } from 'lucide-react';
-import pizzaImage from '@assets/generated_images/3D_round_pizza_render_8830be4d.png';
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,107,53,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,107,53,0.05),transparent_50%)]" />
-      
-      <div 
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[50%] md:w-[55%] lg:w-[60%] h-full flex items-center justify-center opacity-20 md:opacity-30 pointer-events-none"
-        style={{
-          transform: 'translateY(-50%) translateX(10%)',
-        }}
-      >
-        <img 
-          src={pizzaImage} 
-          alt="Pizza" 
-          className="w-full max-w-[600px] lg:max-w-[800px] h-auto object-contain"
-          style={{
-            filter: 'drop-shadow(0 20px 60px rgba(255, 107, 53, 0.3))',
-          }}
-        />
-      </div>
       
       <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-24 md:py-32 w-full">
         <div className="max-w-2xl">
