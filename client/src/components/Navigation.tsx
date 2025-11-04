@@ -30,7 +30,7 @@ export default function Navigation() {
     <>
       <nav 
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+          isScrolled || !isHomePage ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8">
