@@ -30,7 +30,7 @@ export default function Navigation() {
     <>
       <nav 
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled || !isHomePage ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+          isScrolled ? 'bg-background/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -45,26 +45,48 @@ export default function Navigation() {
               {isHomePage ? (
                 <button 
                   onClick={() => scrollToSection('combos')}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  className={`hover:text-primary transition-colors font-medium ${
+                    isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                  }`}
                   data-testid="link-combos"
                 >
                   Combos
                 </button>
               ) : (
-                <Link href="/" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-home">
+                <Link 
+                  href="/" 
+                  className={`hover:text-primary transition-colors font-medium ${
+                    isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                  }`}
+                  data-testid="link-home"
+                >
                   Home
                 </Link>
               )}
-              <Link href="/build-your-own" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-build">
+              <Link 
+                href="/build-your-own" 
+                className={`hover:text-primary transition-colors font-medium ${
+                  isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                }`}
+                data-testid="link-build"
+              >
                 Build Your Own
               </Link>
-              <Link href="/menu" className="text-foreground hover:text-primary transition-colors font-medium" data-testid="link-menu">
+              <Link 
+                href="/menu" 
+                className={`hover:text-primary transition-colors font-medium ${
+                  isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                }`}
+                data-testid="link-menu"
+              >
                 Full Menu
               </Link>
               {isHomePage && (
                 <button 
                   onClick={() => scrollToSection('locations')}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  className={`hover:text-primary transition-colors font-medium ${
+                    isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                  }`}
                   data-testid="link-locations"
                 >
                   Locations
@@ -82,7 +104,9 @@ export default function Navigation() {
             </div>
 
             <button
-              className="md:hidden"
+              className={`md:hidden ${
+                isScrolled ? 'text-foreground' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-menu-toggle"
             >
