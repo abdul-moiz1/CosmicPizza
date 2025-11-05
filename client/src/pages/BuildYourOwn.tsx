@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import PizzaBuilder from '@/components/PizzaBuilder';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -308,13 +309,32 @@ export default function BuildYourOwn() {
 
             {/* Order Summary */}
             <div className="lg:col-span-1">
-              <Card className="sticky top-4">
-                <CardHeader>
-                  <CardTitle>Your Pizza</CardTitle>
-                  <CardDescription>Order Summary</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2 text-sm">
+              <div className="sticky top-4 space-y-6">
+                {/* Animated Pizza Preview */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-center">Pizza Preview</CardTitle>
+                    <CardDescription className="text-center">Watch your pizza come to life!</CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <PizzaBuilder 
+                      size={selectedSize}
+                      crust={selectedCrust}
+                      sauce={selectedSauce}
+                      cheese={selectedCheese}
+                      toppings={selectedToppings}
+                    />
+                  </CardContent>
+                </Card>
+
+                {/* Order Summary */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Your Pizza</CardTitle>
+                    <CardDescription>Order Summary</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Size:</span>
                       <span className="font-medium text-foreground" data-testid="text-summary-size">
@@ -339,9 +359,9 @@ export default function BuildYourOwn() {
                         {cheeses.find(c => c.id === selectedCheese)?.name}
                       </span>
                     </div>
-                  </div>
+                    </div>
 
-                  {selectedToppings.length > 0 && (
+                    {selectedToppings.length > 0 && (
                     <>
                       <Separator />
                       <div className="space-y-2">
@@ -363,27 +383,28 @@ export default function BuildYourOwn() {
                             );
                           })}
                         </div>
-                      </div>
-                    </>
-                  )}
+                        </div>
+                      </>
+                    )}
 
-                  <Separator />
-                  
-                  <div className="flex justify-between text-lg font-bold">
-                    <span className="text-foreground">Total:</span>
-                    <span className="text-primary" data-testid="text-total-price">${calculateTotal().toFixed(2)}</span>
-                  </div>
+                    <Separator />
+                    
+                    <div className="flex justify-between text-lg font-bold">
+                      <span className="text-foreground">Total:</span>
+                      <span className="text-primary" data-testid="text-total-price">${calculateTotal().toFixed(2)}</span>
+                    </div>
 
-                  <Button 
-                    className="w-full text-lg py-6 h-auto"
-                    size="lg"
-                    onClick={() => console.log('Add to cart clicked')}
-                    data-testid="button-add-to-cart"
-                  >
-                    Add to Cart
-                  </Button>
-                </CardContent>
-              </Card>
+                    <Button 
+                      className="w-full text-lg py-6 h-auto"
+                      size="lg"
+                      onClick={() => console.log('Add to cart clicked')}
+                      data-testid="button-add-to-cart"
+                    >
+                      Add to Cart
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
